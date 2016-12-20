@@ -96,19 +96,19 @@ func (fs *fileServer) Serve(root http.FileSystem) http.Handler {
 			}
 		}
 
-		// use contents of index.html for directory, if present
-		if d.IsDir() {
-			index := name + fs.indexPage
-			ff, err := root.Open(index)
-			if err == nil {
-				defer ff.Close()
-				dd, err := ff.Stat()
-				if err == nil {
-					d = dd
-					f = ff
-				}
-			}
-		}
+// 		// use contents of index.html for directory, if present
+// 		if d.IsDir() {
+// 			index := name + fs.indexPage
+// 			ff, err := root.Open(index)
+// 			if err == nil {
+// 				defer ff.Close()
+// 				dd, err := ff.Stat()
+// 				if err == nil {
+// 					d = dd
+// 					f = ff
+// 				}
+// 			}
+// 		}
 
 		// Still a directory? (we didn't find an index.html file)
 		if d.IsDir() {
