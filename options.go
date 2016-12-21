@@ -16,6 +16,6 @@ func (opts *Options) setDefaults() {
 		opts.CheckInterval = defaultCheckInterval
 	}
 	if opts.IndexPage == "" {
-		opts.IndexPage = defaultIndexPage
+// 		opts.IndexPage = defaultIndexPage
 	}
 }
