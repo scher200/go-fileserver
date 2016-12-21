@@ -60,13 +60,13 @@ func (fs *fileServer) Serve(root http.FileSystem) http.Handler {
 			return
 		}
 
-		// redirect .../index.html to .../
-		// can't use Redirect() because that would make the path absolute,
-		// which would be a problem running under StripPrefix
-		if strings.HasSuffix(r.URL.Path, fs.indexPage) {
-			localRedirect(w, r, "./")
-			return
-		}
+// 		// redirect .../index.html to .../
+// 		// can't use Redirect() because that would make the path absolute,
+// 		// which would be a problem running under StripPrefix
+// 		if strings.HasSuffix(r.URL.Path, fs.indexPage) {
+// 			localRedirect(w, r, "./")
+// 			return
+// 		}
 
 		f, err := root.Open(name)
 		if err != nil {
@@ -81,20 +81,20 @@ func (fs *fileServer) Serve(root http.FileSystem) http.Handler {
 			return
 		}
 
-		// redirect to canonical path: / at end of directory url
-		// r.URL.Path always begins with /
-		url := r.URL.Path
-		if d.IsDir() {
-			if url[len(url)-1] != '/' {
-				localRedirect(w, r, path.Base(url)+"/")
-				return
-			}
-		} else {
-			if url[len(url)-1] == '/' {
-				localRedirect(w, r, "../"+path.Base(url))
-				return
-			}
-		}
+// 		// redirect to canonical path: / at end of directory url
+// 		// r.URL.Path always begins with /
+// 		url := r.URL.Path
+// 		if d.IsDir() {
+// 			if url[len(url)-1] != '/' {
+// 				localRedirect(w, r, path.Base(url)+"/")
+// 				return
+// 			}
+// 		} else {
+// 			if url[len(url)-1] == '/' {
+// 				localRedirect(w, r, "../"+path.Base(url))
+// 				return
+// 			}
+// 		}
 
 // 		// use contents of index.html for directory, if present
 // 		if d.IsDir() {
