@@ -47,7 +47,7 @@ type fileServer struct {
 func (fs *fileServer) Serve(root http.FileSystem) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		upath := r.URL.Path
-		fmt.Println("upath: %s", upath)
+// 		fmt.Println("upath: %s", upath)
 		
 		if !strings.HasPrefix(upath, "/") {
 			upath = "/" + upath
@@ -55,7 +55,7 @@ func (fs *fileServer) Serve(root http.FileSystem) http.Handler {
 		}
 
 		name := path.Clean(upath)
-		fmt.Println("name: %s", name)
+// 		fmt.Println("name: %s", name)
 	   
 		if file, ok := fs.cache[name]; ok {
 			fs.serveContent(w, r, file.name, file.modTime, file.size, bytes.NewReader(file.data))
