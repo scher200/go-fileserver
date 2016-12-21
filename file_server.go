@@ -1,7 +1,6 @@
 package fileserver
 
 import (
-	"log"
 	"bytes"
 	"errors"
 	"fmt"
