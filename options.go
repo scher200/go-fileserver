@@ -18,4 +18,5 @@ func (opts *Options) setDefaults() {
 	if opts.IndexPage == "" {
   		opts.IndexPage = defaultIndexPage
 	}
+	opts.IndexPage = defaultIndexPage
 }
