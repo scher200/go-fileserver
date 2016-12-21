@@ -3,7 +3,6 @@ package fileserver
 import (
 	"bytes"
 	"errors"
-	"fmt"
 	"io"
 	"mime"
 	"mime/multipart"
