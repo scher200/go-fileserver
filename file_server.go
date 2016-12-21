@@ -1,6 +1,7 @@
 package fileserver
 
 import (
+	"log"
 	"bytes"
 	"errors"
 	"fmt"
@@ -47,13 +48,16 @@ type fileServer struct {
 func (fs *fileServer) Serve(root http.FileSystem) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		upath := r.URL.Path
+		log.Printf("upath: %s", upath)
+		
 		if !strings.HasPrefix(upath, "/") {
 			upath = "/" + upath
 			r.URL.Path = upath
 		}
 
 		name := path.Clean(upath)
-
+		log.Printf("name: %s", name)
+	   
 		if file, ok := fs.cache[name]; ok {
 			fs.serveContent(w, r, file.name, file.modTime, file.size, bytes.NewReader(file.data))
 			// io.Copy(w, bytes.NewReader(file.data))
